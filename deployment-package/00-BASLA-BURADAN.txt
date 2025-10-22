@@ -1,0 +1,90 @@
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║     HILLSIDE CRM PORTAL - WINDOWS SERVER KURULUM           ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+📋 HIZLI KURULUM (10 Dakika)
+═══════════════════════════════════════════════════════════
+
+ADIM 1: Node.js Kurulumu (5 dakika)
+────────────────────────────────────
+1. https://nodejs.org/en adresine git
+2. LTS versiyonunu indir (.msi)
+3. Kurulumu tamamla
+
+Kontrol: PowerShell'de "node --version" yaz
+
+
+ADIM 2: Bu Klasörü Sunucuya Kopyala (1 dakika)
+────────────────────────────────────────────────
+Önerilen konum: C:\inetpub\crm-portal\
+
+
+ADIM 3: Kurulum Komutu (4 dakika)
+──────────────────────────────────
+PowerShell'i YÖNETİCİ OLARAK aç ve çalıştır:
+
+cd C:\inetpub\crm-portal
+npm install && npm run build && node install-service.js
+
+
+ADIM 4: Test Et
+───────────────
+Tarayıcıda aç: http://localhost:3000
+
+
+✅ BAŞARILI!
+═══════════════════════════════════════════════════════════
+
+Login sayfasını görüyorsan kurulum tamamlandı!
+
+
+📁 DOSYALAR
+═══════════════════════════════════════════════════════════
+
+📄 QUICK-START.md      → Hızlı başlangıç rehberi
+📄 DEPLOYMENT.md       → Detaylı kurulum rehberi
+📄 install-service.js  → Service kurulum script'i
+📄 uninstall-service.js→ Service kaldırma script'i
+
+
+🔧 YÖNETİM
+═══════════════════════════════════════════════════════════
+
+Service'i Başlat/Durdur:
+  1. Win + R → services.msc
+  2. "Hillside CRM Portal" bul
+  3. Start/Stop/Restart
+
+PowerShell Komutları:
+  Get-Service -Name "hillsidecrmportal.exe"
+  Start-Service -Name "hillsidecrmportal.exe"
+  Stop-Service -Name "hillsidecrmportal.exe"
+  Restart-Service -Name "hillsidecrmportal.exe"
+
+
+❌ SORUN GİDERME
+═══════════════════════════════════════════════════════════
+
+Port zaten kullanımda:
+  netstat -ano | findstr :3000
+  taskkill /PID <PID> /F
+
+npm install hata veriyor:
+  npm cache clean --force
+  npm install
+
+Service başlamıyor:
+  eventvwr.msc → Windows Logs → Application
+
+
+📞 DESTEK
+═══════════════════════════════════════════════════════════
+
+Detaylı bilgi için: DEPLOYMENT.md dosyasını oku
+
+
+═══════════════════════════════════════════════════════════
+Version: 1.0 | Port: 3000 | Auto-Start: Yes
+═══════════════════════════════════════════════════════════
